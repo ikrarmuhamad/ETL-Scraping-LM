@@ -1,0 +1,5 @@
+apache-airflow==2.10.4
+beautifulsoup4==4.12.3
+pandas==2.2.3
+selenium==4.28.1
+webdriver_manager==4.0.2
