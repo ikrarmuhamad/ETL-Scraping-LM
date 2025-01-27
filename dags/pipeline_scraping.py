@@ -11,14 +11,14 @@ default_args = {
 }
 
 with DAG(
-    dag_id ='scraping_etl',
+    dag_id ='testing_scraping_etl',
     default_args = default_args,
     description='First ETL Scraping',
     start_date=datetime(2025,1,25,21),
     schedule_interval='@daily'
 ) as dag:
-    scraping_etl = PythonOperator(
+    task_1 = PythonOperator(
         task_id='testing_scraping',
         python_callable=scraping_etl
     )
-    scraping_etl
+    task_1

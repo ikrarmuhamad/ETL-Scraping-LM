@@ -1,0 +1,131 @@
+[2025-01-27T06:36:08.070+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-27T06:36:08.114+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: testing_scraping_etl.testing_scraping scheduled__2025-01-26T00:00:00+00:00 [queued]>
+[2025-01-27T06:36:08.135+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: testing_scraping_etl.testing_scraping scheduled__2025-01-26T00:00:00+00:00 [queued]>
+[2025-01-27T06:36:08.137+0000] {taskinstance.py:2866} INFO - Starting attempt 4 of 6
+[2025-01-27T06:36:08.168+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): testing_scraping> on 2025-01-26 00:00:00+00:00
+[2025-01-27T06:36:08.184+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=609) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-27T06:36:08.189+0000] {standard_task_runner.py:72} INFO - Started process 612 to run task
+[2025-01-27T06:36:08.190+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'testing_scraping_etl', 'testing_scraping', 'scheduled__2025-01-26T00:00:00+00:00', '--job-id', '68', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_scraping.py', '--cfg-path', '/tmp/tmpszg15liu']
+[2025-01-27T06:36:08.197+0000] {standard_task_runner.py:105} INFO - Job 68: Subtask testing_scraping
+[2025-01-27T06:36:08.401+0000] {task_command.py:467} INFO - Running <TaskInstance: testing_scraping_etl.testing_scraping scheduled__2025-01-26T00:00:00+00:00 [running]> on host dfba9d948bec
+[2025-01-27T06:36:09.198+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ikrar' AIRFLOW_CTX_DAG_ID='testing_scraping_etl' AIRFLOW_CTX_TASK_ID='testing_scraping' AIRFLOW_CTX_EXECUTION_DATE='2025-01-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-26T00:00:00+00:00'
+[2025-01-27T06:36:09.207+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-27T06:36:09.301+0000] {logger.py:11} INFO - ====== WebDriver manager ======
+[2025-01-27T06:36:09.402+0000] {logger.py:11} INFO - Get LATEST chromedriver version for google-chrome
+[2025-01-27T06:36:09.988+0000] {logger.py:11} INFO - About to download new driver from https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
+[2025-01-27T06:36:10.222+0000] {logger.py:11} INFO - Driver downloading response is 200
+[2025-01-27T06:36:14.956+0000] {logger.py:11} INFO - Get LATEST chromedriver version for google-chrome
+[2025-01-27T06:36:15.886+0000] {logger.py:11} INFO - Get LATEST chromedriver version for google-chrome
+[2025-01-27T06:36:16.087+0000] {logger.py:11} INFO - Driver has been saved in cache [/home/***/.wdm/drivers/chromedriver/linux64/114.0.5735.90]
+[2025-01-27T06:36:16.111+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scraping_lm.py", line 20, in scraping_etl
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py", line 55, in __init__
+    self.service.start()
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/airflow/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver unexpectedly exited. Status code was: 127
+
+[2025-01-27T06:36:16.170+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=testing_scraping_etl, task_id=testing_scraping, run_id=scheduled__2025-01-26T00:00:00+00:00, execution_date=20250126T000000, start_date=20250127T063608, end_date=20250127T063616
+[2025-01-27T06:36:16.267+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-27T06:36:16.269+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 68 for task testing_scraping (Message: Service /home/airflow/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver unexpectedly exited. Status code was: 127
+; 612)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scraping_lm.py", line 20, in scraping_etl
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py", line 55, in __init__
+    self.service.start()
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/common/service.py", line 113, in start
+    self.assert_process_still_running()
+  File "/home/airflow/.local/lib/python3.12/site-packages/selenium/webdriver/common/service.py", line 126, in assert_process_still_running
+    raise WebDriverException(f"Service {self._path} unexpectedly exited. Status code was: {return_code}")
+selenium.common.exceptions.WebDriverException: Message: Service /home/airflow/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver unexpectedly exited. Status code was: 127
+
+[2025-01-27T06:36:16.367+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-01-27T06:36:16.429+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-27T06:36:16.436+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

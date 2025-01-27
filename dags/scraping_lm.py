@@ -11,10 +11,13 @@ import pandas as pd
 
 def scraping_etl() :
     options = Options()
-    options.add_argument('--headless')  # Jalankan tanpa antarmuka grafis
-    options.add_argument('--no-sandbox')  # Untuk lingkungan server/CI/CD
-    options.add_argument('--disable-dev-shm-usage')  # Mengatasi masalah pada beberapa sistem
-    options.add_argument('--remote-debugging-port=9222')  # Debugging
+    options.add_argument("--headless")  # Mode headless (tanpa GUI)
+    options.add_argument("--no-sandbox")  # Penting untuk container Docker
+    options.add_argument("--disable-dev-shm-usage")  # Kurangi konsumsi shared memory
+    options.add_argument("--disable-gpu")  # Nonaktifkan GPU (opsional untuk headless)
+    options.add_argument("--disable-extensions")  # Nonaktifkan ekstensi Chrome
+    options.add_argument("--start-maximized")  # Maksimalkan window (opsional)
+    options.add_argument("--window-size=1920,1080")  # Set ukuran window
 
     # Menyiapkan WebDriver dengan path yang benar (menambahkan Service)
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
@@ -53,4 +56,5 @@ def scraping_etl() :
 
     columns = ['weight', 'antam_price', 'ubs_price']
     df = pd.DataFrame(data_rows[1:], columns=columns)
-    df.to_csv(r'C:\Users\ASUS\Downloads\Ikrar\Data\ETL Pipeline\ETL-Scraping-LM\Data\result.csv', index=False)
+    df.head()
+    # df.to_csv(r'C:\Users\ASUS\Downloads\Ikrar\Data\ETL Pipeline\ETL-Scraping-LM\Data\result.csv', index=False)
